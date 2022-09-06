@@ -1,40 +1,43 @@
 const express = require("express");
 const app = express();
-var bodyParser = require("body-parser");
 
 const port = 3000;
+// Add headers before the routes are defined
+app.use(function (req, res, next) {
+  // Website you wish to allow to connect
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3001");
+
+  // Request methods you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+
+  // Request headers you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader("Access-Control-Allow-Credentials", true);
+
+  // Pass to next layer of middleware
+  next();
+});
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-app.get("/:id", (req, res) => {
-  switch (parseInt(req.params.id)) {
-    case 1:
-      res.end("Social fundraising that actually works for nonprofits");
-      break;
-    case 2:
-      res.send(
-        "Proven to increase giving, event participation, and awareness of your cause."
-      );
-      break;
-    case 3:
-      res.send("ONLINE SOCIAL FUNDRAISING");
-      break;
-    case 4:
-      res.send("Add social to grow your fundraising year round");
-      break;
-    case 5:
-      res.send(
-        "Social AMPTM is a set of features designed to promote sharing."
-      );
-      break;
-
-    default:
-      break;
-  }
+  res.send({
+    hero: "Social fundraising that actually works for nonprofits",
+    blockquote:
+      "Proven to increase giving, event participation, and awareness of your cause.",
+    orange: "ONLINE SOCIAL FUNDRAISING",
+    h2: "Add social to grow your fundraising year round",
+    p: "Social AMP (trademark) is a set of features designed to promote sharing.",
+  });
 });
 
-app.use(bodyParser.json());
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
