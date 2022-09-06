@@ -5,7 +5,10 @@ const port = 3000;
 // Add headers before the routes are defined
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3001");
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://main--animated-sprinkles-cb6cf7.netlify.app/"
+  );
 
   // Request methods you wish to allow
   res.setHeader(
