@@ -8,7 +8,7 @@ app.use(function (req, res, next) {
   // Website you wish to allow to connect
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://animated-sprinkles-cb6cf7.netlify.app/"
+    "https://animated-sprinkles-cb6cf7.netlify.app"
   );
 
   // Request methods you wish to allow
